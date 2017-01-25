@@ -6,11 +6,47 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/24 14:13:18 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/01/24 14:15:56 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/01/25 23:53:50 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
+
+int do_exec(t_list *environ, t_cmd cmd)
+{
+	pid_t 		pid;
+
+	if (!environ)
+		ft_putstr("\e[31mNo environnement defined.\e[0m\n");
+	cmd = get_path(get_env(environ, "PATH"), cmd.opts, environ);
+	if (!(cmd.path))
+	{
+		if (cmd.opts)
+		{
+			ft_putstr(cmd.opts[0]);
+			ft_putstr(": command not found\n");
+		}
+	}
+	else
+	{
+		while ((pid = fork()) == -1)
+			sleep(2);
+		if (pid == 0)
+		{
+			int test = execve(cmd.path, cmd.opts, NULL);
+			printf("ret cmd:%d\n", test);
+			ft_putstr("avant fin du pross\n");
+			sleep(5);
+			exit(EXIT_SUCCESS);
+		}
+		if (pid > 0)
+		{
+			wait(NULL);
+		}
+		free(cmd.path);
+	}
+	return(1);
+}
 
 static char **check_cmd(char **cmd, t_list *env)
 {
