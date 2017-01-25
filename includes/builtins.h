@@ -6,14 +6,13 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 00:21:10 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/01/24 14:41:56 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/01/26 00:04:06 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUILTINS_H
 # define BUILTINS_H
 
-//# include <libft.h>
 # include <minishell.h>
 
 # define NBR_BUILTINS 8

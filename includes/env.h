@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/24 13:39:17 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/01/24 14:41:29 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/01/26 00:04:01 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define ENV_H
 
 # include <minishell.h>
-# include <libft.h>
 
 t_list			*env_to_lst(char  **env);
 char			*get_env(t_list *env, char *variable);
