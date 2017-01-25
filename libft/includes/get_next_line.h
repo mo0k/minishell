@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/26 06:38:24 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/01/24 11:12:17 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/01/25 21:56:55 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define END_OF_FILE 0
 # define END_OF_LINE 1
 
-# define BUFF_SIZE 512
+# define BUFF_SIZE 256
 
 typedef struct		s_file
 {
