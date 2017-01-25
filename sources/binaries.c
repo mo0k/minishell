@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/24 14:13:18 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/01/25 23:53:50 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/01/26 00:43:55 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 int do_exec(t_list *environ, t_cmd cmd)
 {
 	pid_t 		pid;
+	int			status;
 
+	status = 1;
 	if (!environ)
 		ft_putstr("\e[31mNo environnement defined.\e[0m\n");
 	cmd = get_path(get_env(environ, "PATH"), cmd.opts, environ);
@@ -33,19 +35,16 @@ int do_exec(t_list *environ, t_cmd cmd)
 			sleep(2);
 		if (pid == 0)
 		{
-			int test = execve(cmd.path, cmd.opts, NULL);
-			printf("ret cmd:%d\n", test);
-			ft_putstr("avant fin du pross\n");
-			sleep(5);
+			execve(cmd.path, cmd.opts, NULL);
 			exit(EXIT_SUCCESS);
 		}
 		if (pid > 0)
 		{
-			wait(NULL);
+			wait(&status);
 		}
 		free(cmd.path);
 	}
-	return(1);
+	return ((status > 0) ? 1 : 0);
 }
 
 static char **check_cmd(char **cmd, t_list *env)

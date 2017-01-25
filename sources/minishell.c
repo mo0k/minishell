@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 21:31:53 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/01/25 23:57:54 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/01/26 00:48:21 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_cmd do_command(t_cmd cmd, char **cmdlist, t_list *environ, t_list *builtins)
 	if (cmd.opts && (is_builtins(builtins, cmd.opts[0])))
 		cmd.ret = do_builtin(&environ, builtins, cmd);
 	else
-		do_exec(environ, cmd);
+		cmd.ret = do_exec(environ, cmd);
 	ft_delstrtab(cmd.opts);
 	return (cmd);
 }
