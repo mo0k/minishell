@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 00:24:16 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/01/24 14:41:25 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/01/26 00:02:19 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ typedef struct 	s_env
 # include <stdio.h>
 # include <libft.h>
 # include <get_next_line.h>
-//path binairy & tilde
-char 			*format_tilde(char *cmd, t_list *env);
-char 			**check_tilde(char **cmd, t_list *env);
+# include <tilde.h>
 # include <env.h>
 # include <builtins.h>
+# include <binaries.h>
 
+# define PROMPT "\e[31mminish3ll_$> \e[0m"
 
-t_cmd			get_path(char *env_path, char **cmd, t_list *env);
+t_cmd			do_command(t_cmd cmd, char **cmdlist, t_list *environ, t_list *builtins);
 
 #endif
