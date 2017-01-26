@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 21:31:53 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/01/26 00:48:21 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/01/26 22:40:22 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ t_cmd do_command(t_cmd cmd, char **cmdlist, t_list *environ, t_list *builtins)
 	cmd.opts = (**cmdlist != 0) ? ft_strsplit(*cmdlist, ' ') : NULL;
 	if (cmd.opts)
 		cmd.opts = check_tilde(cmd.opts, environ);
-	//free(line);
 	if (cmd.opts && (is_builtins(builtins, cmd.opts[0])))
 		cmd.ret = do_builtin(&environ, builtins, cmd);
 	else
