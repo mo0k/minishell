@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 16:07:58 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/01/24 14:00:41 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/01/29 23:55:29 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,13 @@ static void	print_space(int state)
 		write(1, " ", 1);
 }
 
+static int echo_return(int ret, int state)
+{
+	print_space(state);
+	ft_putnbr(ret);
+	return (1);
+}
+
 static int echo_env(t_list 	**env, char *cmd, int state)
 {
 	char *str;
@@ -26,7 +33,7 @@ static int echo_env(t_list 	**env, char *cmd, int state)
 	{
 		print_space(state);
 		ft_putstr(str);
-		state = 1;
+		state = ((str && *str == 0)) ? 0 : 1;
 	}
 	return (state) ? (1) : (0);
 }
@@ -43,11 +50,7 @@ int	echo(t_list 	**env, t_cmd command)
 	while (*cmd)
 	{
 		if (!ft_strcmp(*cmd, "$?"))
-		{
-			print_space(state);
-			ft_putnbr(command.ret);
-			state = 1;
-		}
+			state = echo_return(command.ret, state);
 		else if (**cmd == '$')
 			state = echo_env(env, *cmd+1, state);
 		else

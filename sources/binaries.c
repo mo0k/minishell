@@ -6,122 +6,57 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/24 14:13:18 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/01/26 00:43:55 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/01/29 14:44:36 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-int do_exec(t_list *environ, t_cmd cmd)
+int 	do_exec(t_list *environ, t_cmd cmd)
 {
-	pid_t 		pid;
 	int			status;
 
 	status = 1;
 	if (!environ)
 		ft_putstr("\e[31mNo environnement defined.\e[0m\n");
-	cmd = get_path(get_env(environ, "PATH"), cmd.opts, environ);
-	if (!(cmd.path))
+	cmd = get_binpath(get_env(environ, "PATH"), cmd.opts, environ);
+	if (!(cmd.path) && cmd.opts)
 	{
-		if (cmd.opts)
+		//printf("AVANT ACCESS do_exec\n");
+		if (access(cmd.opts[0], 0) == -1)
 		{
-			ft_putstr(cmd.opts[0]);
-			ft_putstr(": command not found\n");
+			//ft_putstr(cmd.opts[0]);
+			if (ft_strchr(cmd.opts[0], '/'))
+				puterror(PROMPT, cmd.opts[0], ERR_NOENT);
+			else
+				puterror(PROMPT, cmd.opts[0], ": command not found");
 		}
 	}
 	else
 	{
-		while ((pid = fork()) == -1)
-			sleep(2);
-		if (pid == 0)
-		{
-			execve(cmd.path, cmd.opts, NULL);
-			exit(EXIT_SUCCESS);
-		}
-		if (pid > 0)
-		{
-			wait(&status);
-		}
+		status = do_fork(cmd.path, cmd.opts, NULL);
 		free(cmd.path);
 	}
 	return ((status > 0) ? 1 : 0);
 }
 
-static char **check_cmd(char **cmd, t_list *env)
+int 	do_fork(char *binpath, char**av, char **env)
 {
-	int i;
-	char *new_cmd;
+	pid_t 		pid;
+	int			status;
 
-	i = 0;
-	while (cmd[i])
-	{
-		if (*cmd[i] == '$')
-		{
-			printf("check_cmd:%s\n", get_env(env, cmd[i] + 1));
-			if ((new_cmd = get_env(env, cmd[i] + 1)))
-			{
-				free(cmd[i]);
-				cmd[i] = ft_strdup(new_cmd);
-				//ft_putstr(ft_strchr(new_cmd, '=') + 1);
-			}
-		}
-		i++;
-	}
-	//return (cmd);
-	return (check_tilde(cmd, env));
-}
+	status = 1;
 
-t_cmd get_path(char *env_path, char **cmd, t_list *env)
-{
-			printf("start get_path\n");
-	char **path_tab;
-	char *path;
-	t_cmd ret;
-	//ret = NULL;
-	ret.path = NULL;
-	ret.opts = cmd;
-	ret.ret = 0;
-	if (!env_path || !cmd)
+	while ((pid = fork()) == -1)
+		sleep(2);
+	if (pid == 0)
 	{
-		printf("fuck off\n");
-		return (ret);
+		execve(binpath, av, env);
+		exit(EXIT_SUCCESS);
 	}
-	//env_path+=5;
-	if (access(*(cmd), 0) == 0)
+	if (pid > 0)
 	{
-		ret.path = ft_strdup(*cmd);
-			printf("avant crash 1\n");
-		ret.opts = check_cmd(cmd, env);
-		return (ret);;
+		wait(&status);
 	}
-	path_tab = ft_strsplit(env_path, ':');
-	char **tmp = path_tab;
-	while (*tmp)
-	{
-		//printf("in while\n");
-		if (!(path = ft_strnew(ft_strlen(*tmp) + ft_strlen(*cmd) + 1)))
-			return (ret);
-		path = ft_strcpy(path, *tmp);
-		path[ft_strlen(*tmp)] = '/';
-		path = ft_strcat(path, *cmd);
-		if (access(path, 0) == 0)
-		{
-			//ret = (t_cmd*)malloc(sizeof(t_cmd));
-			ret.path = path;
-			printf("avant crash 2\n");
-			ret.opts = check_cmd(cmd, env);
-			//printf("yo\n");
-			ft_delstrtab(path_tab);
-			//delete path_tab;
-			//printf("fin get_path\n");
-			return (ret);
-		}
-		free(path);
-		tmp++;
-	}
-	
-	//printf("aavnt free\n");
-	ft_delstrtab(path_tab);
-
-	return (ret);
+	return ((status > 0) ? 1 : 0);
 }

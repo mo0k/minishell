@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 00:21:10 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/01/26 00:04:06 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/01/30 00:03:17 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <minishell.h>
 
 # define NBR_BUILTINS 8
+# define CWD 255
 
 typedef int 		(*t_builtinfunc)(t_list**, t_cmd);
 
@@ -38,7 +39,5 @@ int					ft_clearenv(t_list **env, t_cmd cmd);
 int					ft_setenv(t_list 	**env, t_cmd cmd);
 int					echo(t_list 	**env, t_cmd cmd);
 int					ft_cd(t_list 	**env, t_cmd cmd);
-
-void display_builtin(t_list *builtins);
 
 #endif

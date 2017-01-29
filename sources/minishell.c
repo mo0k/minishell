@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 21:31:53 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/01/26 22:40:22 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/01/29 14:50:10 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		main(int ac, char **av, char **env)
 		return (1);
 	while (42)
 	{
-		ft_putstr(PROMPT);
+		ft_putstr(PROMPT_COLOR);
 		get_next_line(0, &line);
 		cmdlist = (*line != 0) ? ft_strsplit(line, ';') : NULL ;
 		free(line);
