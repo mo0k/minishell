@@ -6,15 +6,16 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/24 14:13:18 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/01/29 14:44:36 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/01/30 10:21:31 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-int 	do_exec(t_list *environ, t_cmd cmd)
+int				do_exec(t_list *environ, t_cmd cmd)
 {
 	int			status;
+	char		**env;
 
 	status = 1;
 	if (!environ)
@@ -22,10 +23,8 @@ int 	do_exec(t_list *environ, t_cmd cmd)
 	cmd = get_binpath(get_env(environ, "PATH"), cmd.opts, environ);
 	if (!(cmd.path) && cmd.opts)
 	{
-		//printf("AVANT ACCESS do_exec\n");
 		if (access(cmd.opts[0], 0) == -1)
 		{
-			//ft_putstr(cmd.opts[0]);
 			if (ft_strchr(cmd.opts[0], '/'))
 				puterror(PROMPT, cmd.opts[0], ERR_NOENT);
 			else
@@ -34,13 +33,15 @@ int 	do_exec(t_list *environ, t_cmd cmd)
 	}
 	else
 	{
-		status = do_fork(cmd.path, cmd.opts, NULL);
+		env = transfert_env(environ);
+		status = do_fork(cmd.path, cmd.opts, env);
+		ft_delstrtab(env);
 		free(cmd.path);
 	}
 	return ((status > 0) ? 1 : 0);
 }
 
-int 	do_fork(char *binpath, char**av, char **env)
+int				do_fork(char *binpath, char**av, char **env)
 {
 	pid_t 		pid;
 	int			status;
