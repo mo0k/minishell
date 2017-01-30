@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 14:50:56 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/01/30 09:54:01 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/01/30 15:53:13 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void			ft_lstdelnext(t_list **alst, void (*del)(void*, size_t));
 void			ft_lstadd_start(t_list **alst, t_list *new);
 void			ft_lstadd_end(t_list **alst, t_list *new);
 void			ft_lstiter(t_list *lst, void (*f)(t_list *elem));
-t_list			*ft_lstselect(t_list **alst, char *elem, int (*select)(t_list*, char*));
+t_list			*ft_lstselect(t_list **l, char *elem, int (*f)(t_list*, char*));
 t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 void			ft_lstrev(t_list **alst);
 size_t			ft_lstlen(t_list *lst);
@@ -106,11 +106,11 @@ void			ft_putnbr_base(int nbr, char *base);
 char			*ft_itoa_base(int nbr, char *base);
 int				ft_stracat(char **dst, char *src);
 int				ft_addchar(char **dst, char c);
-char 			***ft_get_triple_tab(int line, int columm, int len);
-void 			ft_print_triple_tab(char ***tab);
-void 			ft_delete_triple_tab(char ***tab);
-int 			ft_strpadding_right(char **str, int len_max);
-int 			ft_strpadding_left(char **str, int len_max);
-char			*ft_strtriplejoin(char const *s1, char const *s2, char const *s3);
+char			***ft_get_triple_tab(int line, int columm, int len);
+void			ft_print_triple_tab(char ***tab);
+void			ft_delete_triple_tab(char ***tab);
+int				ft_strpadding_right(char **str, int len_max);
+int				ft_strpadding_left(char **str, int len_max);
+char			*ft_str3join(char const *s1, char const *s2, char const *s3);
 
 #endif

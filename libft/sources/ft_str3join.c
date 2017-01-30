@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtriplejoin.c                                 :+:      :+:    :+:   */
+/*   ft_str3join.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/30 09:47:56 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/01/30 09:52:56 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/01/30 15:56:34 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_strtriplejoin(char const *s1, char const *s2, char const *s3)
+char		*ft_str3join(char const *s1, char const *s2, char const *s3)
 {
 	char	*ptr;
 	int		len;
