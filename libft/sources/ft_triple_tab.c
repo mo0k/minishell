@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_triple_tab.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoucade <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 14:50:12 by jmoucade          #+#    #+#             */
-/*   Updated: 2016/11/05 14:50:14 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/01/30 14:58:06 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		***ft_get_triple_tab(int line, int columm, int len)
+char			***ft_get_triple_tab(int line, int columm, int len)
 {
-	char	***tab;
-	int		cells;
-	int		cols;
+	char		***tab;
+	int			cells;
+	int			cols;
 
 	if (!line || !columm || !len)
 		return (NULL);
@@ -40,10 +40,10 @@ char		***ft_get_triple_tab(int line, int columm, int len)
 	return (tab);
 }
 
-void		ft_print_triple_tab(char ***tab)
+void			ft_print_triple_tab(char ***tab)
 {
-	int		i;
-	int		j;
+	int			i;
+	int			j;
 
 	if (!tab || !(*tab) || !(**tab))
 		return ;
@@ -62,20 +62,19 @@ void		ft_print_triple_tab(char ***tab)
 	}
 }
 
-void		ft_delete_triple_tab(char ***tab)
+void			ft_delete_triple_tab(char ***tab)
 {
-	int		i;
-	int		j;
+	int			i;
+	int			j;
 
 	if (!tab)
 		return ;
-		i = 0;
-	while(tab[i])
+	i = 0;
+	while (tab[i])
 	{
 		j = 0;
-		while(tab[i][j])
+		while (tab[i][j])
 		{
-			//printf("=>%s\n", tab[i][j]);
 			free(tab[i][j]);
 			j++;
 		}

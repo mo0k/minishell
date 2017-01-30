@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/26 06:38:24 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/01/25 21:56:55 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/01/30 15:07:42 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct		s_file
 {
 	int				fd;
 	char			*data;
-	int 			eof;
+	int				eof;
 	struct s_file	*next;
 }					t_file;
 

@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   ft_delstrtab.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/24 10:45:53 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/01/24 11:14:26 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/01/30 14:52:54 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 
-void 	ft_delstrtab(char **tab)
+void	ft_delstrtab(char **tab)
 {
 	int	i;
 
 	if (!tab || !*tab)
-		return;
+		return ;
 	i = 0;
 	while (tab[i])
 	{

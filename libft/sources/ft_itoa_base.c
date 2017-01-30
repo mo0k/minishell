@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoucade <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 14:23:13 by jmoucade          #+#    #+#             */
-/*   Updated: 2016/11/05 14:23:39 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/01/30 14:54:20 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ static int			check_base(char *base, int len)
 	return (0);
 }
 
-static char		*ft_strjoinc(char *s1, char const c)
+static char			*ft_strjoinc(char *s1, char const c)
 {
-	char	*ptr;
+	char			*ptr;
 
 	ptr = NULL;
 	if (s1)
@@ -51,7 +51,7 @@ static char		*ft_strjoinc(char *s1, char const c)
 	return (ptr);
 }
 
-static char		*ft_itoa_b(char **ret, int n, char *base, int len_base)
+static char			*ft_itoa_b(char **ret, int n, char *base, int len_base)
 {
 	if (n < 0)
 	{
@@ -73,11 +73,10 @@ static char		*ft_itoa_b(char **ret, int n, char *base, int len_base)
 	return (*ret);
 }
 
-
-char		*ft_itoa_base(int nbr, char *base)
+char				*ft_itoa_base(int nbr, char *base)
 {
-	int		len;
-	char	*ret;
+	int				len;
+	char			*ret;
 
 	len = ft_strlen(base);
 	if (!(ret = ft_strnew(ft_nbrlen(1))))

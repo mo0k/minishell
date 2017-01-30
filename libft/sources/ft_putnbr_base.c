@@ -1,4 +1,16 @@
-#include "../includes/libft.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/01/30 14:55:49 by jmoucade          #+#    #+#             */
+/*   Updated: 2017/01/30 14:56:23 by jmoucade         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <libft.h>
 
 static int			check_base(char *base, int len)
 {
@@ -15,7 +27,7 @@ static int			check_base(char *base, int len)
 	return (0);
 }
 
-static void		display_octal_base(int nbr)
+static void			display_octal_base(int nbr)
 {
 	if (nbr == 0)
 		ft_putchar('0');
@@ -35,7 +47,7 @@ static void		display_octal_base(int nbr)
 		ft_putchar('7');
 }
 
-static void		ft_putnbr_b(int nbr, char *base, int len_base)
+static void			ft_putnbr_b(int nbr, char *base, int len_base)
 {
 	if (nbr < 0)
 	{
@@ -60,9 +72,9 @@ static void		ft_putnbr_b(int nbr, char *base, int len_base)
 	}
 }
 
-void		ft_putnbr_base(int nbr, char *base)
+void				ft_putnbr_base(int nbr, char *base)
 {
-	int	len;
+	int				len;
 
 	len = 0;
 	while (base[len])
