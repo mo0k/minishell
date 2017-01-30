@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 00:24:16 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/01/30 08:54:46 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/01/30 09:27:49 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@
 # include <color.h>
 
 # define PROMPT "minish3ll"
-# define COLOR_PROMPT YELLOW
-# define PROMPT_COLOR COLOR_PROMPT PROMPT"_$> "NOCOLOR
-
-t_cmd			do_command(t_cmd cmd, char **cmdlist, t_list *environ, t_list *builtins);
+# define PROMPT_COLOR YELLOW
+# define C_PROMPT PROMPT_COLOR PROMPT"_$> "NOCOLOR
 
 #endif
