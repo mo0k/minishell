@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+         #
+#    By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/05 13:11:07 by jmoucade          #+#    #+#              #
-#    Updated: 2017/01/29 14:44:45 by mo0ky            ###   ########.fr        #
+#    Updated: 2017/01/30 19:04:43 by jmoucade         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,3 +71,5 @@ fclean: clean
 	@echo "Delete $(NAME) file."
 
 re: fclean all
+
+.PHONY: all clean fclean re
