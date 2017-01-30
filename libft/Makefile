@@ -100,6 +100,7 @@ SRCS = 	$(SRCS_PATH)/ft_memset.c			\
 		$(SRCS_PATH)/ft_triple_tab.c 			\
 		$(SRCS_PATH)/ft_strpadding_right.c 			\
 		$(SRCS_PATH)/ft_strpadding_left.c 			\
+		$(SRCS_PATH)/ft_strtriplejoin.c 			\
 		$(SRCS_PATH)/ft_addchar.c
 
 

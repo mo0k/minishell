@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 14:50:56 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/01/24 11:17:43 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/01/30 09:54:01 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,6 @@ void 			ft_print_triple_tab(char ***tab);
 void 			ft_delete_triple_tab(char ***tab);
 int 			ft_strpadding_right(char **str, int len_max);
 int 			ft_strpadding_left(char **str, int len_max);
+char			*ft_strtriplejoin(char const *s1, char const *s2, char const *s3);
 
 #endif
