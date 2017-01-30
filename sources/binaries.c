@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   binaries.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/24 14:13:18 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/01/30 10:21:31 by mo0ky            ###   ########.fr       */
+/*   Created: 2017/01/24 14:13:18 by jmoucade          #+#    #+#             */
+/*   Updated: 2017/01/30 18:13:51 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int				do_exec(t_list *environ, t_cmd cmd)
 			if (ft_strchr(cmd.opts[0], '/'))
 				puterror(PROMPT, cmd.opts[0], ERR_NOENT);
 			else
-				puterror(PROMPT, cmd.opts[0], ": command not found");
+				puterror(PROMPT, cmd.opts[0], ERR_NOTFOUND);
 		}
 	}
 	else
@@ -41,13 +41,12 @@ int				do_exec(t_list *environ, t_cmd cmd)
 	return ((status > 0) ? 1 : 0);
 }
 
-int				do_fork(char *binpath, char**av, char **env)
+int				do_fork(char *binpath, char **av, char **env)
 {
-	pid_t 		pid;
+	pid_t		pid;
 	int			status;
 
 	status = 1;
-
 	while ((pid = fork()) == -1)
 		sleep(2);
 	if (pid == 0)

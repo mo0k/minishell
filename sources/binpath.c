@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   binpath.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/29 10:09:07 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/01/29 22:15:12 by mo0ky            ###   ########.fr       */
+/*   Created: 2017/01/29 10:09:07 by jmoucade          #+#    #+#             */
+/*   Updated: 2017/01/30 18:57:08 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <binaries.h>
 
-char **check_cmd(char **cmd, t_list *env)
+char			**check_cmd(char **cmd, t_list *env)
 {
-	int i;
-	char *new_cmd;
+	int			i;
+	char		*new_cmd;
 
 	i = 0;
 	while (cmd[i])
@@ -33,9 +33,9 @@ char **check_cmd(char **cmd, t_list *env)
 	return (check_tilde(cmd, env));
 }
 
-static int rights_access(char *path)
+static int		rights_access(char *path)
 {
-	struct stat s;
+	struct stat	s;
 
 	if (lstat(path, &s) == -1)
 		return (0);
@@ -52,14 +52,15 @@ static int rights_access(char *path)
 	return (1);
 }
 
-static void find_binpath(char *env_path, char **cmd, t_list *env, t_cmd *ret)
+static void		find_binpath(char *envpath, char **cmd, t_list *env, t_cmd *ret)
 {
-	char **path_tab;
-	char *path;
+	char		**path_tab;
+	char		*path;
+	char		**tmp;
 
-	path_tab = ft_strsplit(env_path, ':');
-	char **tmp = path_tab;
-	while (*tmp)
+	path_tab = (envpath && *envpath == 0) ? NULL : ft_strsplit(envpath, ':');
+	tmp = path_tab;
+	while (tmp && *tmp)
 	{
 		if (!(path = ft_strnew(ft_strlen(*tmp) + ft_strlen(*cmd) + 1)))
 			return ;
@@ -78,25 +79,21 @@ static void find_binpath(char *env_path, char **cmd, t_list *env, t_cmd *ret)
 	ft_delstrtab(path_tab);
 }
 
-t_cmd get_binpath(char *env_path, char **cmd, t_list *env)
+t_cmd			get_binpath(char *env_path, char **cmd, t_list *env)
 {
-	t_cmd ret;
+	t_cmd		ret;
+	int			result;
 
 	ret.path = NULL;
 	ret.opts = cmd;
-	ret.ret = 0;
+	ret.ret = 1;
 	if (!env_path || !cmd)
 		return (ret);
-	if (access(*(cmd), 0) == 0) 
+	if (access(*(cmd), 0) == 0)
 	{
-		int result;
 		if ((result = rights_access(*cmd)))
 			ret.path = ft_strdup(*cmd);
-		//printf("avant crash 1=> ret:%d\n", result);
 		ret.opts = check_cmd(cmd, env);
-		//ft_putstr(ret.path);
-		//write(1, "\n", 1);
-		//ft_putstrtab(ret.opts);
 		return (ret);
 	}
 	else

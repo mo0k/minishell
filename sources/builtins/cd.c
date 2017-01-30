@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/21 21:55:57 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/01/29 23:03:56 by mo0ky            ###   ########.fr       */
+/*   Created: 2017/01/21 21:55:57 by jmoucade          #+#    #+#             */
+/*   Updated: 2017/01/30 16:32:39 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <builtins.h>
 
-static void chdir_authorized(char *pathdir, char *old_pwd_value, t_list **env)
+static void		chdir_authorized(char *path, char *old_pwd_value, t_list **env)
 {
-	t_cmd new;
-	t_cmd old;
-	char *new_pwd;
-	char *old_pwd;
+	t_cmd		new;
+	t_cmd		old;
+	char		*new_pwd;
+	char		*old_pwd;
 
 	if (!(old_pwd = ft_strjoin("OLDPWD=", old_pwd_value)))
 		return ;
@@ -29,7 +29,7 @@ static void chdir_authorized(char *pathdir, char *old_pwd_value, t_list **env)
 	free(old_pwd);
 	ft_setenv(env, old);
 	ft_delstrtab(old.opts);
-	if (!(new_pwd = ft_strjoin("PWD=", getcwd(pathdir, CWD))))
+	if (!(new_pwd = ft_strjoin("PWD=", getcwd(path, CWD))))
 		return ;
 	if (!(new.opts = ft_strsplit(new_pwd, ' ')))
 	{
@@ -41,9 +41,9 @@ static void chdir_authorized(char *pathdir, char *old_pwd_value, t_list **env)
 	ft_delstrtab(new.opts);
 }
 
-static int chdir_refused(char *pathdir)
+static int		chdir_refused(char *pathdir)
 {
-	struct stat s;
+	struct stat	s;
 
 	if ((lstat(pathdir, &s)) == -1)
 		puterror("cd", pathdir, ERR_NOENT);
@@ -54,13 +54,14 @@ static int chdir_refused(char *pathdir)
 	return (1);
 }
 
-int 	ft_cd(t_list 	**env, t_cmd command)
+int				ft_cd(t_list **env, t_cmd command)
 {
-	char *path = ft_strnew(CWD);
-	char *old_pwd_value;
-	int ret;
-	char **cmd;
+	char		*path;
+	char		*old_pwd_value;
+	int			ret;
+	char		**cmd;
 
+	path = ft_strnew(CWD);
 	cmd = check_cmd(command.opts + 1, *env);
 	ret = 0;
 	old_pwd_value = getcwd(path, CWD);

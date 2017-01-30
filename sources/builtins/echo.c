@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/16 16:07:58 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/01/29 23:55:29 by mo0ky            ###   ########.fr       */
+/*   Created: 2017/01/16 16:07:58 by jmoucade          #+#    #+#             */
+/*   Updated: 2017/01/30 16:32:31 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@ static void	print_space(int state)
 		write(1, " ", 1);
 }
 
-static int echo_return(int ret, int state)
+static int	echo_return(int ret, int state)
 {
 	print_space(state);
 	ft_putnbr(ret);
 	return (1);
 }
 
-static int echo_env(t_list 	**env, char *cmd, int state)
+static int	echo_env(t_list **env, char *cmd, int state)
 {
-	char *str;
+	char	*str;
 
 	if ((str = get_env(*env, cmd)))
 	{
@@ -38,10 +38,10 @@ static int echo_env(t_list 	**env, char *cmd, int state)
 	return (state) ? (1) : (0);
 }
 
-int	echo(t_list 	**env, t_cmd command)
+int			ft_echo(t_list **env, t_cmd command)
 {
-	int state;
-	char **cmd;
+	int		state;
+	char	**cmd;
 
 	state = 0;
 	if (!command.opts)
@@ -52,7 +52,7 @@ int	echo(t_list 	**env, t_cmd command)
 		if (!ft_strcmp(*cmd, "$?"))
 			state = echo_return(command.ret, state);
 		else if (**cmd == '$')
-			state = echo_env(env, *cmd+1, state);
+			state = echo_env(env, *cmd + 1, state);
 		else
 		{
 			print_space(state);

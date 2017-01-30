@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/15 09:58:56 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/01/24 13:57:44 by mo0ky            ###   ########.fr       */
+/*   Created: 2017/01/15 09:58:56 by jmoucade          #+#    #+#             */
+/*   Updated: 2017/01/30 17:34:14 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ void			**get_builtins_func(void)
 	if (!(builtins_func = (void**)malloc(sizeof(void*) * (NBR_BUILTINS + 1))))
 		return (NULL);
 	builtins_func[NBR_BUILTINS + 1] = NULL;
-	builtins_func[0] = &printenv;
-	builtins_func[1] = &exit_prog;
+	builtins_func[0] = &ft_printenv;
+	builtins_func[1] = &ft_exit_prog;
 	builtins_func[2] = &ft_unsetenv;
-	builtins_func[3] = &echo;
-	builtins_func[4] = &printenv;
+	builtins_func[3] = &ft_echo;
+	builtins_func[4] = &ft_printenv;
 	builtins_func[5] = &ft_clearenv;
 	builtins_func[6] = &ft_setenv;
 	builtins_func[7] = &ft_cd;
@@ -72,7 +72,7 @@ t_list			*init_builtins(void)
 	return (lst_builtins);
 }
 
-int 			is_builtins(t_list *builtins, char *command)
+int				is_builtins(t_list *builtins, char *command)
 {
 	t_list		*cur;
 
@@ -89,14 +89,14 @@ int 			is_builtins(t_list *builtins, char *command)
 int				do_builtin(t_list **environ, t_list *builtins, t_cmd cmd)
 {
 	t_list		*tmp_bltins;
+	char		*name;
 
 	tmp_bltins = builtins;
 	while (tmp_bltins)
 	{
-		if (!ft_strncmp(((t_builtins*)(tmp_bltins->content))->name, cmd.opts[0], ft_strlen(cmd.opts[0])))
-		{
+		name = ((t_builtins*)(tmp_bltins->content))->name;
+		if (!ft_strncmp(name, cmd.opts[0], ft_strlen(cmd.opts[0])))
 			return ((((t_builtins*)(tmp_bltins->content))->func)(environ, cmd));
-		}
 		tmp_bltins = tmp_bltins->next;
 	}
 	return (0);

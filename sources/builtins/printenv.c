@@ -3,22 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   printenv.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/16 15:38:24 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/01/30 00:03:06 by mo0ky            ###   ########.fr       */
+/*   Created: 2017/01/16 15:38:24 by jmoucade          #+#    #+#             */
+/*   Updated: 2017/01/30 16:47:42 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <builtins.h>
 
-int 		printenv(t_list 	**env, t_cmd command)
+int			ft_printenv(t_list **env, t_cmd command)
 {
-	//int		state;
 	t_list	*cur;
 	char	**cmd;
 
-	if (!env || !command.opts)
+	if (!env || !*env || !command.opts)
 		return (1);
 	cmd = command.opts + 1;
 	if (*cmd)

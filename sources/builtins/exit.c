@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/16 15:38:18 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/01/23 15:06:01 by mo0ky            ###   ########.fr       */
+/*   Created: 2017/01/16 15:38:18 by jmoucade          #+#    #+#             */
+/*   Updated: 2017/01/30 16:32:27 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <builtins.h>
 
-int	exit_prog(t_list 	**env, t_cmd cmd)
+int	ft_exit_prog(t_list **env, t_cmd cmd)
 {
 	(void)env;
 	(void)cmd;
