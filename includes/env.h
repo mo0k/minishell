@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/24 13:39:17 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/01/30 09:55:31 by mo0ky            ###   ########.fr       */
+/*   Created: 2017/01/24 13:39:17 by jmoucade          #+#    #+#             */
+/*   Updated: 2017/01/30 16:27:45 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <minishell.h>
 
-t_list			*env_to_lst(char  **env);
+t_list			*env_to_lst(char **env);
 char			**transfert_env(t_list *env);
 char			*get_env(t_list *env, char *variable);
 int				select_env(t_list *env, char *variable);

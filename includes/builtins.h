@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/16 00:21:10 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/01/30 00:03:17 by mo0ky            ###   ########.fr       */
+/*   Created: 2017/01/16 00:21:10 by jmoucade          #+#    #+#             */
+/*   Updated: 2017/01/30 16:33:23 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,26 @@
 # define NBR_BUILTINS 8
 # define CWD 255
 
-typedef int 		(*t_builtinfunc)(t_list**, t_cmd);
+typedef int				(*t_builtinfunc)(t_list**, t_cmd);
 
-typedef struct				s_builtins
+typedef struct			s_builtins
 {
-		char 				*name;
-		t_builtinfunc 		func;
-}							t_builtins;
+	char			*name;
+	t_builtinfunc	func;
+}						t_builtins;
 
-char 				**get_builtins_name(void);
-void 				**get_builtins_func(void);
-t_list				*init_builtins(void);
-int					do_builtin(t_list **environ, t_list *builtins, t_cmd cmd);
-int 				is_builtins(t_list *builtins, char *command);
+char					**get_builtins_name(void);
+void					**get_builtins_func(void);
+t_list					*init_builtins(void);
+int						do_builtin(t_list **env, t_list *builtins, t_cmd cmd);
+int						is_builtins(t_list *builtins, char *command);
 
-int 				printenv(t_list 	**env, t_cmd name);
-int					exit_prog(t_list 	**env, t_cmd cmd);
-int					ft_unsetenv(t_list **env, t_cmd cmd);
-int					ft_clearenv(t_list **env, t_cmd cmd);
-int					ft_setenv(t_list 	**env, t_cmd cmd);
-int					echo(t_list 	**env, t_cmd cmd);
-int					ft_cd(t_list 	**env, t_cmd cmd);
+int						ft_printenv(t_list **env, t_cmd name);
+int						ft_exit_prog(t_list **env, t_cmd cmd);
+int						ft_unsetenv(t_list **env, t_cmd cmd);
+int						ft_clearenv(t_list **env, t_cmd cmd);
+int						ft_setenv(t_list **env, t_cmd cmd);
+int						ft_echo(t_list **env, t_cmd cmd);
+int						ft_cd(t_list **env, t_cmd cmd);
 
 #endif

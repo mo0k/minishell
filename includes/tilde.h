@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tilde.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/25 23:55:38 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/01/25 23:57:06 by mo0ky            ###   ########.fr       */
+/*   Created: 2017/01/25 23:55:38 by jmoucade          #+#    #+#             */
+/*   Updated: 2017/01/30 16:27:25 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 
 # include <minishell.h>
 
-char 		*format_tilde(char *cmd, t_list *env);
-char 		**check_tilde(char **cmd, t_list *env);
+char		*format_tilde(char *cmd, t_list *env);
+char		**check_tilde(char **cmd, t_list *env);
 
 #endif
-
