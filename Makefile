@@ -6,7 +6,7 @@
 #    By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/05 13:11:07 by jmoucade          #+#    #+#              #
-#    Updated: 2017/01/31 01:59:22 by jmoucade         ###   ########.fr        #
+#    Updated: 2017/01/31 14:37:41 by jmoucade         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SRC =	$(SRC_PATH)/minishell.c		\
 		$(SRC_PATH)/binpath.c		\
 		$(SRC_PATH)/tilde.c			\
 		$(SRC_PATH)/error.c			\
+		$(SRC_PATH)/signals.c			\
 		$(SRC_PATH)/builtins/exit.c			\
 		$(SRC_PATH)/builtins/unsetenv.c		\
 		$(SRC_PATH)/builtins/echo.c			\
