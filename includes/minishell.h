@@ -6,7 +6,7 @@
 /*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 00:24:16 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/01/30 16:27:14 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/01/31 01:58:23 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,7 @@
 # define PROMPT "minish3ll"
 # define PROMPT_COLOR YELLOW
 # define C_PROMPT PROMPT_COLOR PROMPT"_$> "NOCOLOR
+
+void		usage(int ac, char **av);
 
 #endif

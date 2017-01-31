@@ -6,7 +6,7 @@
 /*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 17:09:29 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/01/30 16:32:08 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/01/30 21:07:36 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,27 @@
 
 int			ft_unsetenv(t_list **env, t_cmd command)
 {
-	t_list	*cur;
+	t_list	*tmp;
 	char	**cmd;
+	int		ret;
 
+	ret = 1;
 	cmd = command.opts + 1;
-	cur = *env;
 	if (!*cmd || !*env)
 		return (1);
-	while (cur)
+	while (*cmd)
 	{
-		if (!ft_strcmp(*cmd, ((t_env*)(cur->content))->key))
+		if ((tmp = ft_lstselect(env, *cmd, &select_env)))
 		{
-			if (cur == *env)
+			if (tmp == *env)
 				ft_lstdelfirst(env, &del_env);
 			else
-				ft_lstdelnext(&cur->prev, &del_env);
-			return (0);
+				ft_lstdelnext(&tmp->prev, &del_env);
+			ret = 0;
 		}
-		cur = cur->next;
+		else
+			ret = 1;
+		cmd++;
 	}
-	return (1);
+	return (ret);
 }
