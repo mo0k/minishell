@@ -6,7 +6,7 @@
 /*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 21:31:53 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/01/31 02:01:19 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/01/31 14:35:48 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 static t_cmd	do_cmd(t_cmd cmd, char **cmdlist, t_list **env, t_list *bltins)
 {
 	cmd.opts = (**cmdlist != 0) ? ft_strsplit(*cmdlist, ' ') : NULL;
-	ft_putstrtab(cmd.opts);
 	if (cmd.opts)
 		cmd.opts = check_tilde(cmd.opts, *env);
 	if (cmd.opts && cmd.opts[0] && (is_builtins(bltins, cmd.opts[0])))
@@ -70,7 +69,7 @@ int				main(int ac, char **av, char **env)
 		return (1);
 	if (!(builtins = init_builtins()))
 		return (1);
-	signal(SIGINT, SIG_IGN);
+	signal(SIGINT, &handler_prompt);
 	while (42)
 	{
 		ft_putstr(C_PROMPT);

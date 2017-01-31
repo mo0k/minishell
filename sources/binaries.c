@@ -6,7 +6,7 @@
 /*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/24 14:13:18 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/01/31 00:21:58 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/01/31 14:38:45 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int				do_fork(char *binpath, char **av, char **env)
 	pid_t		pid;
 	int			status;
 
+	signal(SIGINT, &handler_noprompt);
 	status = 1;
 	while ((pid = fork()) == -1)
 		sleep(2);
@@ -59,5 +60,6 @@ int				do_fork(char *binpath, char **av, char **env)
 	{
 		wait(&status);
 	}
+	signal(SIGINT, &handler_prompt);
 	return ((status > 0) ? 1 : 0);
 }

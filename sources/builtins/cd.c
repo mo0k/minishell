@@ -6,7 +6,7 @@
 /*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/21 21:55:57 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/01/30 16:32:39 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/01/31 14:59:40 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,31 +54,42 @@ static int		chdir_refused(char *pathdir)
 	return (1);
 }
 
-int				ft_cd(t_list **env, t_cmd command)
+static void		do_chdir(t_list **env, char *pathdir, char *env_key, int *ret)
 {
 	char		*path;
 	char		*old_pwd_value;
-	int			ret;
-	char		**cmd;
 
 	path = ft_strnew(CWD);
-	cmd = check_cmd(command.opts + 1, *env);
-	ret = 0;
 	old_pwd_value = getcwd(path, CWD);
-	if (!*cmd || **cmd == '$')
+	if (env_key)
 	{
-		if (chdir(get_env(*env, "HOME")) == -1)
-			ret = chdir_refused(*cmd);
+		if (chdir(get_env(*env, env_key)) == -1)
+			*ret = chdir_refused(pathdir);
 		else
 			chdir_authorized(path, old_pwd_value, env);
 	}
 	else
 	{
-		if (chdir(*cmd) == -1)
-			ret = chdir_refused(*cmd);
+		if (chdir(pathdir) == -1)
+			*ret = chdir_refused(pathdir);
 		else
 			chdir_authorized(path, old_pwd_value, env);
 	}
 	free(path);
+}
+
+int				ft_cd(t_list **env, t_cmd command)
+{
+	int			ret;
+	char		**cmd;
+
+	cmd = check_cmds(command.opts + 1, *env);
+	ret = 0;
+	if (!*cmd || **cmd == '$')
+		do_chdir(env, *cmd, "HOME", &ret);
+	else if (**cmd == '-' && !*(*cmd + 1))
+		do_chdir(env, *cmd, "OLDPWD", &ret);
+	else
+		do_chdir(env, *cmd, NULL, &ret);
 	return (ret);
 }

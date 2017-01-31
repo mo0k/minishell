@@ -6,28 +6,39 @@
 /*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/29 10:09:07 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/01/30 18:57:08 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/01/31 11:23:07 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <binaries.h>
 
-char			**check_cmd(char **cmd, t_list *env)
+void			check_cmd(char **cmd, t_list *env)
+{
+	char		*new_cmd;
+
+	if (cmd && *cmd && **cmd == '$')
+	{
+		if ((new_cmd = get_env(env, *cmd + 1)))
+		{
+			free(*cmd);
+			*cmd = ft_strdup(new_cmd);
+		}
+		else
+		{
+			free(*cmd);
+			*cmd = ft_strdup(0);
+		}
+	}
+}
+
+char			**check_cmds(char **cmd, t_list *env)
 {
 	int			i;
-	char		*new_cmd;
 
 	i = 0;
 	while (cmd[i])
 	{
-		if (*cmd[i] == '$')
-		{
-			if ((new_cmd = get_env(env, cmd[i] + 1)))
-			{
-				free(cmd[i]);
-				cmd[i] = ft_strdup(new_cmd);
-			}
-		}
+		check_cmd(&cmd[i], env);
 		i++;
 	}
 	return (check_tilde(cmd, env));
@@ -71,7 +82,7 @@ static void		find_binpath(char *envpath, char **cmd, t_list *env, t_cmd *ret)
 		{
 			if ((rights_access(path)))
 				ret->path = ft_strdup(path);
-			ret->opts = check_cmd(cmd, env);
+			ret->opts = check_cmds(cmd, env);
 		}
 		free(path);
 		tmp++;
@@ -87,13 +98,13 @@ t_cmd			get_binpath(char *env_path, char **cmd, t_list *env)
 	ret.path = NULL;
 	ret.opts = cmd;
 	ret.ret = 1;
-	if (!env_path || !cmd)
+	if (!cmd)
 		return (ret);
 	if (access(*(cmd), 0) == 0)
 	{
 		if ((result = rights_access(*cmd)))
 			ret.path = ft_strdup(*cmd);
-		ret.opts = check_cmd(cmd, env);
+		ret.opts = check_cmds(cmd, env);
 		return (ret);
 	}
 	else

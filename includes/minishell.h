@@ -6,7 +6,7 @@
 /*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 00:24:16 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/01/31 01:58:23 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/01/31 14:39:11 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 
 # include <unistd.h>
 # include <stdio.h>
+# include <signal.h>
 # include <libft.h>
 # include <get_next_line.h>
 # include <types.h>
+# include <signals.h>
 # include <tilde.h>
 # include <env.h>
 # include <builtins.h>
