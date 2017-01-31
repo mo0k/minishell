@@ -6,7 +6,7 @@
 #    By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/05 13:11:07 by jmoucade          #+#    #+#              #
-#    Updated: 2017/01/31 14:37:41 by jmoucade         ###   ########.fr        #
+#    Updated: 2017/01/31 15:34:21 by jmoucade         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ INC_PATH = includes
 SRC_PATH = sources
 
 SRC =	$(SRC_PATH)/minishell.c		\
-		$(SRC_PATH)/usage.c		\
+		$(SRC_PATH)/prompt.c		\
+		$(SRC_PATH)/usage.c			\
 		$(SRC_PATH)/builtins.c		\
 		$(SRC_PATH)/env.c			\
 		$(SRC_PATH)/env_utils.c		\

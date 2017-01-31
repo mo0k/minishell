@@ -6,7 +6,7 @@
 /*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 21:31:53 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/01/31 14:35:48 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/01/31 15:36:28 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int				main(int ac, char **av, char **env)
 	signal(SIGINT, &handler_prompt);
 	while (42)
 	{
-		ft_putstr(C_PROMPT);
+		prompt(environ);
 		get_next_line(0, &line);
 		change_tab_to_space(line);
 		cmdlist = (*line != 0) ? ft_strsplit(line, ';') : NULL;

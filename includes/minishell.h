@@ -6,7 +6,7 @@
 /*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 00:24:16 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/01/31 14:39:11 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/01/31 16:14:59 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,13 @@
 # include <error.h>
 # include <color.h>
 
+# define CWD 255
 # define PROMPT "minish3ll"
-# define PROMPT_COLOR YELLOW
+# define PROMPT_COLOR MAGENTA
+# define SYMBOL_COLOR CYAN
 # define C_PROMPT PROMPT_COLOR PROMPT"_$> "NOCOLOR
 
 void		usage(int ac, char **av);
+void		prompt(void);
 
 #endif
