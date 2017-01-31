@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 21:31:53 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/01/31 16:20:13 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/01/31 20:43:44 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,16 @@ int				main(int ac, char **av, char **env)
 	while (42)
 	{
 		prompt();
-		get_next_line(0, &line);
-		change_tab_to_space(line);
-		cmdlist = (*line != 0) ? ft_strsplit(line, ';') : NULL;
-		free(line);
-		cmd = do_cmds(cmd, cmdlist, &environ, builtins);
-		ft_delstrtab(cmdlist);
+		if (get_next_line(0, &line) == 1)
+		{
+			change_tab_to_space(line);
+			cmdlist = (*line != 0) ? ft_strsplit(line, ';') : NULL;
+			free(line);
+			cmd = do_cmds(cmd, cmdlist, &environ, builtins);
+			ft_delstrtab(cmdlist);
+		}
+		else
+			write(1, "\n", 1);
 	}
 	return (0);
 }
