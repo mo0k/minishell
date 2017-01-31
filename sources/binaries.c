@@ -6,7 +6,7 @@
 /*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/24 14:13:18 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/01/31 14:38:45 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/01/31 16:49:31 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int				do_fork(char *binpath, char **av, char **env)
 	{
 		signal(SIGINT, SIG_DFL);
 		execve(binpath, av, env);
-		exit(EXIT_SUCCESS);
+		//exit(EXIT_SUCCESS);
 	}
 	if (pid > 0)
 	{
