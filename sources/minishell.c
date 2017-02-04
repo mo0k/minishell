@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 21:31:53 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/01/31 20:43:44 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/02/04 01:46:04 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,26 @@ static void		init_cmd(t_cmd *cmd)
 static void		change_tab_to_space(char *line)
 {
 	int			i;
+	int		state_1;
+	int		state_2;
 
 	i = 0;
+	state_1 = 0;
+	state_2 = 0;
 	while (line[i])
 	{
-		if (line[i] == 9)
+		if (line[i] == 9 || line[i] == 32)
+		{
 			line[i] = 32;
+			printf("%d ", line[i]);
+			state_1 = 1;
+		}
+		else
+			state_2 = 1;
 		i++;
 	}
+	if(state_1 && !state_2)
+		*line = 0;
 }
 
 int				main(int ac, char **av, char **env)
@@ -69,7 +81,7 @@ int				main(int ac, char **av, char **env)
 		return (1);
 	if (!(builtins = init_builtins()))
 		return (1);
-	signal(SIGINT, &handler_prompt);
+	signal_handler(&handler_prompt);
 	while (42)
 	{
 		prompt();

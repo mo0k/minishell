@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/21 21:55:57 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/01/31 14:59:40 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/02/04 01:55:42 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,33 @@ static int		chdir_refused(char *pathdir)
 	return (1);
 }
 
+static int		no_setenv(char *key)
+{
+	puterror("cd", key, ERR_NOTSET);
+	return (1);
+}
+
 static void		do_chdir(t_list **env, char *pathdir, char *env_key, int *ret)
 {
 	char		*path;
 	char		*old_pwd_value;
+	char		*env_value;
 
 	path = ft_strnew(CWD);
 	old_pwd_value = getcwd(path, CWD);
 	if (env_key)
 	{
-		if (chdir(get_env(*env, env_key)) == -1)
-			*ret = chdir_refused(pathdir);
+		//ajoutter var pour get_env
+		if (chdir((env_value = get_env(*env, env_key))) == -1)
+		{
+			printf("IN erreur cd\n");
+			if (env_value)
+				printf("1ere lettre:%d\n", *env_value);
+			if (!env_value || *env_value == 0) //&& *(env_value + 1) == 0))
+				*ret = no_setenv(env_key);
+			else
+				*ret = chdir_refused(pathdir);
+		}
 		else
 			chdir_authorized(path, old_pwd_value, env);
 	}
@@ -83,13 +99,18 @@ int				ft_cd(t_list **env, t_cmd command)
 	int			ret;
 	char		**cmd;
 
-	cmd = check_cmds(command.opts + 1, *env);
 	ret = 0;
-	if (!*cmd || **cmd == '$')
-		do_chdir(env, *cmd, "HOME", &ret);
-	else if (**cmd == '-' && !*(*cmd + 1))
-		do_chdir(env, *cmd, "OLDPWD", &ret);
-	else
-		do_chdir(env, *cmd, NULL, &ret);
+	//if (command.opts && !ft_strcmp(command.opts[1], "$OLDPWD"))
+	//	do_chdir(env, command.opts[1], "OLDPWD", &ret);
+	//else
+	//{
+		cmd = check_cmds(command.opts + 1, *env);
+		if (!*cmd || **cmd == '$')
+			do_chdir(env, *cmd, "HOME", &ret);
+		else if (**cmd == '-' && !*(*cmd + 1))
+			do_chdir(env, *cmd, "OLDPWD", &ret);
+		else
+			do_chdir(env, *cmd, NULL, &ret);
+	//}
 	return (ret);
 }
