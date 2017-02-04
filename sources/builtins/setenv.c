@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setenv.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/17 23:43:37 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/01/31 11:15:54 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/02/01 16:03:33 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static int	do_setenv(t_list **env, char *cmd)
 	char	*value;
 	int		ret;
 
-	if ((sign = ft_strrchr(cmd, '=')) && ft_strlen(cmd) > 1 &&
+	if ((sign = ft_strchr(cmd, '=')) && ft_strlen(cmd) > 1 &&
 				sign != cmd && sign != cmd + ft_strlen(cmd))
 	{
 		*sign = 0;
