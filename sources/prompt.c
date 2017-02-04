@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 15:14:11 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/02/04 01:45:13 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/02/04 22:42:15 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static char	*get_last_dir(char *pathdir)
 	return (((a = ft_strrchr(pathdir, '/')) && !*(a + 1)) ? pathdir : a + 1);
 }
 */
-void		prompt(void)
+int			prompt(void)
 {
 	char	*currentdir;
 
@@ -37,4 +37,5 @@ void		prompt(void)
 	else
 		ft_putstr(C_PROMPT);
 	free(currentdir);
+	return (1);
 }

@@ -6,66 +6,11 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 21:31:53 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/02/04 01:46:04 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/02/05 00:11:08 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
-
-static t_cmd	do_cmd(t_cmd cmd, char **cmdlist, t_list **env, t_list *bltins)
-{
-	cmd.opts = (**cmdlist != 0) ? ft_strsplit(*cmdlist, ' ') : NULL;
-	if (cmd.opts)
-		cmd.opts = check_tilde(cmd.opts, *env);
-	if (cmd.opts && cmd.opts[0] && (is_builtins(bltins, cmd.opts[0])))
-		cmd.ret = do_builtin(env, bltins, cmd);
-	else if (cmd.opts && cmd.opts[0])
-		cmd.ret = do_exec(*env, cmd);
-	ft_delstrtab(cmd.opts);
-	return (cmd);
-}
-
-static t_cmd	do_cmds(t_cmd cmd, char **cmdlst, t_list **env, t_list *bltins)
-{
-	char		**cur;
-
-	cur = cmdlst;
-	while (cur && *cur)
-		cmd = do_cmd(cmd, cur++, env, bltins);
-	return (cmd);
-}
-
-static void		init_cmd(t_cmd *cmd)
-{
-	cmd->path = 0;
-	cmd->opts = NULL;
-	cmd->ret = 0;
-}
-
-static void		change_tab_to_space(char *line)
-{
-	int			i;
-	int		state_1;
-	int		state_2;
-
-	i = 0;
-	state_1 = 0;
-	state_2 = 0;
-	while (line[i])
-	{
-		if (line[i] == 9 || line[i] == 32)
-		{
-			line[i] = 32;
-			printf("%d ", line[i]);
-			state_1 = 1;
-		}
-		else
-			state_2 = 1;
-		i++;
-	}
-	if(state_1 && !state_2)
-		*line = 0;
-}
 
 int				main(int ac, char **av, char **env)
 {
@@ -73,7 +18,6 @@ int				main(int ac, char **av, char **env)
 	char		*line;
 	t_list		*environ;
 	t_list		*builtins;
-	char		**cmdlist;
 
 	usage(ac, av);
 	init_cmd(&cmd);
@@ -84,15 +28,8 @@ int				main(int ac, char **av, char **env)
 	signal_handler(&handler_prompt);
 	while (42)
 	{
-		prompt();
-		if (get_next_line(0, &line) == 1)
-		{
-			change_tab_to_space(line);
-			cmdlist = (*line != 0) ? ft_strsplit(line, ';') : NULL;
-			free(line);
-			cmd = do_cmds(cmd, cmdlist, &environ, builtins);
-			ft_delstrtab(cmdlist);
-		}
+		if (prompt() && get_next_line(0, &line) == 1)
+			cmd = exec_request(line, cmd, &environ, builtins);
 		else
 			write(1, "\n", 1);
 	}

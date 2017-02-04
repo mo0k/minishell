@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 14:32:51 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/02/04 01:49:57 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/02/04 22:30:37 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,11 @@ void		signal_handler(void (*handler)(int))
 
 void		handler_prompt(int signo)
 {
-	if (signo)
+	if (signo == SIGINT)
+	{
 		write(1, "\n", 1);
-	prompt();
+		prompt();
+	}
 }
 
 void		handler_noprompt(int signo)

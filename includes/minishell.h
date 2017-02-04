@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 00:24:16 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/02/04 01:44:43 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/02/04 23:06:04 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <tilde.h>
 # include <env.h>
 # include <builtins.h>
+# include <cmd.h>
 # include <binaries.h>
 # include <error.h>
 # include <color.h>
@@ -36,6 +37,6 @@
 # define C_PROMPT PROMPT_COLOR PROMPT"_$> "NOCOLOR
 
 void		usage(int ac, char **av);
-void		prompt(void);
+int			prompt(void);
 
 #endif
