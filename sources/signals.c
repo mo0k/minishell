@@ -3,24 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 14:32:51 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/01/31 16:17:22 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/02/04 01:49:57 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <signals.h>
 
+void		signal_handler(void (*handler)(int))
+{
+	int		i;
+
+	i = 1;
+	while (i < NBR_SIG)
+	{
+		signal(i, handler);
+		i++;
+	}
+}
+
 void		handler_prompt(int signo)
 {
-	(void)signo;
-	write(1, "\n", 1);
+	if (signo)
+		write(1, "\n", 1);
 	prompt();
 }
 
 void		handler_noprompt(int signo)
 {
-	write(1, "\n", 1);
-	signal(signo, SIG_DFL);
+	if (signo == SIGINT)
+		write(1, "\n", 1);
 }
