@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 00:24:16 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/01/31 16:14:59 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/02/04 01:44:43 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
+
+
 
 # include <unistd.h>
 # include <stdio.h>
@@ -29,7 +31,7 @@
 
 # define CWD 255
 # define PROMPT "minish3ll"
-# define PROMPT_COLOR MAGENTA
+# define PROMPT_COLOR GREEN
 # define SYMBOL_COLOR CYAN
 # define C_PROMPT PROMPT_COLOR PROMPT"_$> "NOCOLOR
 
