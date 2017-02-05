@@ -3,32 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   binpath.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/29 10:09:07 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/01/31 11:23:07 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/02/05 01:04:55 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <binaries.h>
 
-void			check_cmd(char **cmd, t_list *env)
+char			*check_cmd(char *cmd, t_list *env)
 {
 	char		*new_cmd;
 
-	if (cmd && *cmd && **cmd == '$')
+	if (cmd && *cmd == '$')
 	{
-		if ((new_cmd = get_env(env, *cmd + 1)))
+		if ((new_cmd = get_env(env, cmd + 1)))
 		{
-			free(*cmd);
-			*cmd = ft_strdup(new_cmd);
+			free(cmd);
+			return(ft_strdup(new_cmd));
 		}
 		else
 		{
-			free(*cmd);
-			*cmd = ft_strdup(0);
+			free(cmd);
+			return(ft_strdup(0));
 		}
 	}
+	return (cmd);
 }
 
 char			**check_cmds(char **cmd, t_list *env)
@@ -38,7 +39,7 @@ char			**check_cmds(char **cmd, t_list *env)
 	i = 0;
 	while (cmd[i])
 	{
-		check_cmd(&cmd[i], env);
+		check_cmd(check_quote(cmd[i]), env);
 		i++;
 	}
 	return (check_tilde(cmd, env));

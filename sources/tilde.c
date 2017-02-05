@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tilde.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/24 14:13:49 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/01/30 16:17:58 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/02/05 00:56:24 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char		**check_tilde(char **cmd, t_list *env)
 		return (NULL);
 	while (cmd[i])
 	{
-		cmd[i] = format_tilde(cmd[i], env);
+		cmd[i] = format_tilde(check_quote(cmd[i]), env);
 		i++;
 	}
 	return (cmd);
