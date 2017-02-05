@@ -6,7 +6,7 @@
 #    By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/05 13:11:07 by jmoucade          #+#    #+#              #
-#    Updated: 2017/02/04 22:58:28 by mo0ky            ###   ########.fr        #
+#    Updated: 2017/02/05 00:55:37 by mo0ky            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRC =	$(SRC_PATH)/minishell.c		\
 		$(SRC_PATH)/env.c			\
 		$(SRC_PATH)/env_utils.c		\
 		$(SRC_PATH)/binaries.c		\
+		$(SRC_PATH)/quote.c		\
 		$(SRC_PATH)/binpath.c		\
 		$(SRC_PATH)/tilde.c			\
 		$(SRC_PATH)/error.c			\
