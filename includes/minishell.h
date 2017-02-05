@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 00:24:16 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/02/04 23:06:04 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/02/05 00:57:32 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <get_next_line.h>
 # include <types.h>
 # include <signals.h>
+# include <quote.h>
 # include <tilde.h>
 # include <env.h>
 # include <builtins.h>
