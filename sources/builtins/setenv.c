@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/17 23:43:37 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/02/01 16:03:33 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/02/05 01:21:10 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	add_env(char *key, char *value, t_list **env)
 	{
 		free(((t_env*)(tmp->content))->value);
 		((t_env*)(tmp->content))->value = format_tilde(ft_strdup(value), *env);
-		check_cmd(&(((t_env*)(tmp->content))->value), *env);
+		check_cmd(((t_env*)(tmp->content))->value, *env);
 		return (0);
 	}
 	else
@@ -29,7 +29,7 @@ static int	add_env(char *key, char *value, t_list **env)
 		if (!(elem.key = ft_strdup(key)))
 			return (1);
 		elem.value = format_tilde(ft_strdup(value), *env);
-		check_cmd(&(elem.value), *env);
+		check_cmd(elem.value, *env);
 		ft_lstadd_end(env, ft_lstnew(&elem, sizeof(t_env)));
 		return (0);
 	}
