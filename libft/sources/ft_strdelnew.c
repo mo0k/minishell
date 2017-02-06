@@ -1,39 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quote.c                                            :+:      :+:    :+:   */
+/*   ft_strdelnew.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/05 00:51:45 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/02/05 23:16:29 by mo0ky            ###   ########.fr       */
+/*   Created: 2017/02/06 10:12:49 by jmoucade          #+#    #+#             */
+/*   Updated: 2017/02/06 10:14:51 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <quote.h>
+#include <libft.h>
 
-static int		new_string(char **str, int len)
+int				ft_strdelnew(char **addr, char *value)
 {
-	char		*tmp;
-
-	if (!str || !*str)
+	free(*addr);
+	if (!(*addr = ft_strdup(value)))
 		return (0);
-	tmp = *str;
-	*(tmp + len - 1) = 0;
-	free(*str);
-	*str = ft_strdup(tmp + 1);
 	return (1);
-}
-
-char			*check_quote(char *str)
-{
-	int			len;
-
-	if (str && (*str == 34 || *str == 39) && (len = ft_strlen(str)))
-	{
-		if ((*str == 34 && *(str + len - 1) == 34) || 
-			(*str == 39 && *(str + len - 1) == 39))
-			new_string(&str, len);
-	}
-	return (str);
 }

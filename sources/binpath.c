@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/29 10:09:07 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/02/05 01:04:55 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/02/06 10:19:32 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ static void		find_binpath(char *envpath, char **cmd, t_list *env, t_cmd *ret)
 		{
 			if ((rights_access(path)))
 				ret->path = ft_strdup(path);
+			else
+				ft_strdelnew(&(ret->opts[0]), path);
 			ret->opts = check_cmds(cmd, env);
 		}
 		free(path);

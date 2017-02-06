@@ -51,6 +51,7 @@ SRCS = 	$(SRCS_PATH)/ft_memset.c			\
 		$(SRCS_PATH)/ft_memalloc.c		\
 		$(SRCS_PATH)/ft_memdel.c			\
 		$(SRCS_PATH)/ft_strnew.c			\
+		$(SRCS_PATH)/ft_strdelnew.c			\
 		$(SRCS_PATH)/ft_strdel.c			\
 		$(SRCS_PATH)/ft_strclr.c			\
 		$(SRCS_PATH)/ft_striter.c		\
