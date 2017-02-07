@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/04 22:47:09 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/02/05 00:11:04 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/02/06 19:13:29 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,41 +32,40 @@ static void		change_tab_to_space(char *line)
 			state_2 = 1;
 		i++;
 	}
-	if(state_1 && !state_2)
+	if (state_1 && !state_2)
 		*line = 0;
 }
 
-static t_cmd	exec_cmd(t_cmd cmd, char **cmdlist, t_list **env, t_list *bltins)
+static t_cmd	exec_cmd(t_cmd cmd, char **cmdlst, t_list **env, t_list *btins)
 {
-	cmd.opts = (**cmdlist != 0) ? ft_strsplit(*cmdlist, ' ') : NULL;
+	cmd.opts = (**cmdlst != 0) ? ft_strsplit(*cmdlst, ' ') : NULL;
 	if (cmd.opts)
 		cmd.opts = check_tilde(cmd.opts, *env);
-	if (cmd.opts && cmd.opts[0] && (is_builtins(bltins, cmd.opts[0])))
-		cmd.ret = do_builtin(env, bltins, cmd);
+	if (cmd.opts && cmd.opts[0] && (is_builtins(btins, cmd.opts[0])))
+		cmd.ret = do_builtin(env, btins, cmd);
 	else if (cmd.opts && cmd.opts[0])
 		cmd.ret = do_exec(*env, cmd);
 	ft_delstrtab(cmd.opts);
 	return (cmd);
 }
 
-static t_cmd	exec_cmds(t_cmd cmd, char **cmdlst, t_list **env, t_list *bltins)
+static t_cmd	exec_cmds(t_cmd cmd, char **cmdlst, t_list **env, t_list *btins)
 {
 	char		**cur;
 
 	cur = cmdlst;
 	while (cur && *cur)
-		cmd = exec_cmd(cmd, cur++, env, bltins);
+		cmd = exec_cmd(cmd, cur++, env, btins);
 	return (cmd);
 }
 
-t_cmd			exec_request(char *cmdline, t_cmd cmd, t_list **environ, t_list *builtins)
+t_cmd			exec_request(char *cmds, t_cmd cmd, t_list **env, t_list *btins)
 {
 	char		**cmdlist;
 
-	change_tab_to_space(cmdline);
-	cmdlist = (*cmdline != 0) ? ft_strsplit(cmdline, ';') : NULL;
-	free(cmdline);
-	cmd = exec_cmds(cmd, cmdlist, environ, builtins);
+	change_tab_to_space(cmds);
+	cmdlist = (*cmds != 0) ? ft_strsplit(cmds, ';') : NULL;
+	cmd = exec_cmds(cmd, cmdlist, env, btins);
 	ft_delstrtab(cmdlist);
 	return (cmd);
 }

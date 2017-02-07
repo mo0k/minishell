@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   binpath.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/29 10:09:07 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/02/06 10:19:32 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/02/06 18:27:15 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ char			*check_cmd(char *cmd, t_list *env)
 		if ((new_cmd = get_env(env, cmd + 1)))
 		{
 			free(cmd);
-			return(ft_strdup(new_cmd));
+			return (ft_strdup(new_cmd));
 		}
 		else
 		{
 			free(cmd);
-			return(ft_strdup(0));
+			return (ft_strdup(0));
 		}
 	}
 	return (cmd);
@@ -81,10 +81,9 @@ static void		find_binpath(char *envpath, char **cmd, t_list *env, t_cmd *ret)
 		path = ft_strcat(path, *cmd);
 		if (access(path, 0) == 0)
 		{
-			if ((rights_access(path)))
-				ret->path = ft_strdup(path);
-			else
-				ft_strdelnew(&(ret->opts[0]), path);
+			free(ret->path);
+			(rights_access(path)) ? (ret->path = ft_strdup(path)) :
+			ft_strdelnew(&(ret->opts[0]), path);
 			ret->opts = check_cmds(cmd, env);
 		}
 		free(path);

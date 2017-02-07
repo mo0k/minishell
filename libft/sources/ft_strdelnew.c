@@ -3,19 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdelnew.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/06 10:12:49 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/02/06 10:14:51 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/02/06 19:12:35 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 
-int				ft_strdelnew(char **addr, char *value)
+void		ft_strdelnew(char **addr, char *value)
 {
 	free(*addr);
 	if (!(*addr = ft_strdup(value)))
-		return (0);
-	return (1);
+		return ;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/21 21:55:57 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/02/05 22:07:02 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/02/06 14:52:49 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static void		do_chdir(t_list **env, char *pathdir, char *env_key, int *ret)
 	{
 		if (chdir((env_value = get_env(*env, env_key))) == -1)
 		{
- 			if (!env_value || *env_value == 0)
+			if (!env_value || *env_value == 0)
 				*ret = no_setenv(env_key);
 			else
 				*ret = chdir_refused(pathdir);
@@ -81,12 +81,8 @@ static void		do_chdir(t_list **env, char *pathdir, char *env_key, int *ret)
 			chdir_authorized(path, old_pwd_value, env);
 	}
 	else
-	{
-		if (chdir(pathdir) == -1)
-			*ret = chdir_refused(pathdir);
-		else
-			chdir_authorized(path, old_pwd_value, env);
-	}
+		(chdir(pathdir) == -1) ? (*ret = chdir_refused(pathdir)) : \
+		chdir_authorized(path, old_pwd_value, env);
 	free(path);
 }
 

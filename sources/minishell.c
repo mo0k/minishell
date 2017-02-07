@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 21:31:53 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/02/06 10:15:07 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/02/06 16:20:37 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int				main(int ac, char **av, char **env)
 			cmd = exec_request(line, cmd, &environ, builtins);
 		else
 			write(1, "\n", 1);
+		free(line);
 	}
 	return (0);
 }

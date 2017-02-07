@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   binaries.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/24 14:13:18 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/02/05 23:17:14 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/02/06 19:02:46 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ int				do_fork(char *binpath, char **av, char **env)
 	{
 		signal_handler(SIG_DFL);
 		execve(binpath, av, env);
-		//exit(EXIT_SUCCESS);
 	}
 	if (pid > 0)
 	{
